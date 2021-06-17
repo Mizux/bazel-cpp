@@ -18,7 +18,7 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install bazel
-        run: bazel --version
+          bazel --version
     - name: Build
       run: bazel build --cxxopt=-std=c++17 //...:all
     - name: Test
