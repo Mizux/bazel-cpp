@@ -5,8 +5,5 @@ http_archive(
     name = "gtest",
     strip_prefix = "googletest-release-1.8.0/googletest",
     url = "https://github.com/google/googletest/archive/release-1.8.0.zip",
-    #build_file = "@//:gtest.BUILD",
-    #build_file = "//:gtest.BUILD",
-    build_file = "//bazel:gtest.BUILD",
+    build_file = "@//:gtest.BUILD",
 )
-
