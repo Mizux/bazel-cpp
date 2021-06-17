@@ -23,14 +23,14 @@ To build this example you should use:
 
 * on UNIX:
   ```sh
-  bazel test --cxxopt=-std=c++17 //...:all
-  ```
+  bazel test --cxxopt=-std=c++17 //...:all
+  ```
 
 * on Windows when using MSVC:
-  ``sh
-  bazel test --cxxopt="-std:c++17" //...:all
-  ```
-  
+  ```sh
+  bazel test --cxxopt="-std:c++17" //...:all
+  ```
+
 ## Tutorial
 ### Integrating Googletest everywhere
 The official documentation on integrating Googletest just **doesn't work for Windows** and is plain wrong (-_-;)<br>
@@ -39,6 +39,7 @@ using a custom `gtest.BUILD` while a working multi-platform `BUILD.bazel` is alr
 ref: https://docs.bazel.build/versions/main/cpp-use-cases.html#including-external-libraries
 
 Thanksfully after few tests, I manage to make it works on all [GitHub hosted runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners)
+
 1. First use the git version of googletest.<br>
    WORKSPACE:
    ```bazel
