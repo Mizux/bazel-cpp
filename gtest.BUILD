@@ -13,7 +13,6 @@ cc_library(
     ]),
     copts = [
         "-Iexternal/gtest/include",
-        "-Iexternal/gtest",
     ],
     linkopts = ["-pthread"],
     visibility = ["//visibility:public"],
