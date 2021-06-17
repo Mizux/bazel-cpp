@@ -92,3 +92,18 @@ cc_binary(
     ],
 )
 ```
+
+### CI Setup
+Please take a look at [.github/workflows](.github/workflows) to find the configuration file for each jobs.
+
+To install *bazel* on each hosted runner, follow these links:
+ref: https://docs.github.com/en/actions/using-github-hosted-runners/customizing-github-hosted-runners#installing-software-on-windows-runners
+
+* Linux (Ubuntu latest LTS) -> `apt-get install bazel`<br>
+  ref: https://docs.bazel.build/versions/main/install-ubuntu.html<br>
+  (as of 06/2021 Ubuntu 20.04 LTS is still not supported according to the doc...)
+* MacOS -> `brew install bazel`<br>
+  ref: https://formulae.brew.sh/formula/bazel#default
+* Windows -> `choco install bazel`<br>
+  ref: https://community.chocolatey.org/packages/bazel/
+
