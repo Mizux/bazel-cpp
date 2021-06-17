@@ -16,7 +16,6 @@ jobs:
       - name: Install Bazel
         run: |
           brew update
-          brew install bazel
           bazel --version
       - name: Build
         run: bazel build --cxxopt=-std=c++17 //...:all
