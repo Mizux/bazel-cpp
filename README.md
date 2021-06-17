@@ -1,4 +1,8 @@
 # bazel-cpp
+[![Linux](https://github.com/Mizux/bazel-cpp/actions/workflows/linux.yml/badge.svg)](https://github.com/Mizux/bazel-cpp/actions/workflows/linux.yml)
+[![MacOS](https://github.com/Mizux/bazel-cpp/actions/workflows/macos.yml/badge.svg)](https://github.com/Mizux/bazel-cpp/actions/workflows/macos.yml)
+[![Windows](https://github.com/Mizux/bazel-cpp/actions/workflows/windows.yml/badge.svg)](https://github.com/Mizux/bazel-cpp/actions/workflows/windows.yml)
+
 Bazel C++ sample on how to integrate multiple ```cc_library``` targets from different packages.
 
 In Bazel, subdirectories containing BUILD files are known as packages.<br>
