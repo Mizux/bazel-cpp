@@ -12,8 +12,6 @@ Github-CI:
 [github_windows_link]: https://github.com/Mizux/bazel-cpp/actions/workflows/amd64_windows.yml
 [github_amd64_docker_status]: https://github.com/Mizux/bazel-cpp/actions/workflows/amd64_docker.yml/badge.svg
 [github_amd64_docker_link]: https://github.com/Mizux/bazel-cpp/actions/workflows/amd64_docker.yml
-[github_aarch64_docker_status]: https://github.com/Mizux/bazel-cpp/actions/workflows/aarch64_docker.yml/badge.svg
-[github_aarch64_docker_link]: https://github.com/Mizux/bazel-cpp/actions/workflows/aarch64_docker.yml
 
 # Introduction
 <nav for="project"> |
