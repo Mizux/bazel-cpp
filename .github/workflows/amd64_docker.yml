@@ -31,12 +31,3 @@ jobs:
       run: make --directory=ci ${DISTRO}_build
     - name: Test project
       run: make --directory=ci ${DISTRO}_test
-
-    - name: Build install env image
-      run: make --directory=ci ${DISTRO}_install_env
-    - name: Build install devel project
-      run: make --directory=ci ${DISTRO}_install_devel
-    - name: Build install project
-      run: make --directory=ci ${DISTRO}_install_build
-    - name: Test install project
-      run: make --directory=ci ${DISTRO}_install_test
