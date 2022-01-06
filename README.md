@@ -12,6 +12,8 @@ Github-CI:
 [github_windows_link]: https://github.com/Mizux/bazel-cpp/actions/workflows/amd64_windows.yml
 [github_amd64_docker_status]: https://github.com/Mizux/bazel-cpp/actions/workflows/amd64_docker.yml/badge.svg
 [github_amd64_docker_link]: https://github.com/Mizux/bazel-cpp/actions/workflows/amd64_docker.yml
+[github_aarch64_docker_status]: https://github.com/Mizux/bazel-cpp/actions/workflows/aarch64_docker.yml/badge.svg
+[github_aarch64_docker_link]: https://github.com/Mizux/bazel-cpp/actions/workflows/aarch64_docker.yml
 
 # Introduction
 <nav for="project"> |
@@ -28,6 +30,30 @@ Github-CI:
 Bazel C++ sample with tests and GitHub CI support.
 
 This project should run on GNU/Linux, MacOS and Windows.
+
+## Requirement
+You'll need:
+
+* "Bazel >= 4.0".
+
+## Codemap
+The project layout is as follow:
+
+* [WORKSPACE](WORKSPACE) Top-level for [Bazel](https://bazel.build) based build.
+
+## Dependencies
+To complexify a little, the CMake project is composed of three libraries (Foo, Bar and FooBar)
+with the following dependencies:
+
+```sh
+Foo:
+Bar:
+FooBar: PUBLIC Foo PRIVATE Bar
+FooBarApp: PRIVATE FooBar
+```
+
+note: Since `Foo` is a public dependency of `FooBar`, then `FooBarApp` will
+*see* `Foo` inlude directories
 
 ## Build
 To build this example you should use:
@@ -56,39 +82,6 @@ To build this example you should use:
   ```
 
 ## Tutorial
-### Integrating Googletest everywhere
-The official documentation on integrating Googletest just **doesn't work for Windows** and is plain wrong (-_-;)<br>
-e.g. using UNIX only include path syntax in copts `-Ipath`, using UNIX only link option in linkopts `-pthread`,
-using a custom `gtest.BUILD` while a working multi-platform `BUILD.bazel` is already provided by google/googletest...<br>
-ref: https://docs.bazel.build/versions/main/cpp-use-cases.html#including-external-libraries
-
-Thanksfully after few tests, I manage to make it works on all [GitHub hosted runners](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners)
-
-1. First use the git version of googletest.<br>
-   WORKSPACE:
-   ```bazel
-   load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
-
-    git_repository(
-    name = "com_google_googletest",
-    commit = "703bd9c", # release-1.10.0
-    remote = "https://github.com/google/googletest.git",
-   )
-   ```
-2. Use `@com_google_googletest` (as defined in the googletest's WORKSPACE instead of the `@gtest`) and the `gtest_main` target.<br>
-   test/BUILD:
-   ```bazel
-   cc_test(
-    name = "hello-test",
-    srcs = ["hello-test.cc"],
-    copts = ["-Iexternal/gtest/include"],
-    deps = [
-        "@com_google_googletest//:gtest_main",
-        "//main:hello-greet",
-    ],
-   )
-   ```
-
 ### Visibility
 In Bazel, subdirectories containing BUILD files are known as packages.<br>
 The new property `visibility` will tell Bazel which package(s) can reference this target, in this case the `//main` package can use `hello-time` library. 
@@ -147,3 +140,12 @@ Image has been generated using [plantuml](http://plantuml.com/):
 ```bash
 plantuml -Tsvg docs/{file}.dot
 ```
+So you can find the dot source files in [docs](docs).
+
+## License
+Apache 2. See the LICENSE file for details.
+
+## Disclaimer
+This is not an official Google product, it is just code that happens to be
+owned by Google.
+
