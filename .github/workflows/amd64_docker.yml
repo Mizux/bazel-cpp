@@ -16,7 +16,7 @@ jobs:
         distro: [alpine, archlinux, centos, debian, fedora, opensuse, ubuntu]
       fail-fast: false
     env:
-      DISTRO: amd64_${{ matrix.distro }}
+      DISTRO: ${{ matrix.distro }}
     steps:
     - uses: actions/checkout@v2
     - name: Check docker
