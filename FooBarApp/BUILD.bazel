@@ -1,0 +1,19 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+
+cc_binary(
+  name = "foobarapp",
+  srcs = ["src/main.cpp"],
+  deps = [
+    "//FooBar:foobar",
+  ],
+)
+
+cc_test(
+  name = "foobarapp_test",
+  size = "small",
+  srcs = ["src/main.cpp"],
+  deps = [
+    ":foobarapp",
+    "//FooBar:foobar",
+  ],
+)
