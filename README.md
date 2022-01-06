@@ -1,9 +1,30 @@
-# bazel-cpp
-[![Linux](https://github.com/Mizux/bazel-cpp/actions/workflows/linux.yml/badge.svg)](https://github.com/Mizux/bazel-cpp/actions/workflows/linux.yml)
-[![MacOS](https://github.com/Mizux/bazel-cpp/actions/workflows/macos.yml/badge.svg)](https://github.com/Mizux/bazel-cpp/actions/workflows/macos.yml)
-[![Windows](https://github.com/Mizux/bazel-cpp/actions/workflows/windows.yml/badge.svg)](https://github.com/Mizux/bazel-cpp/actions/workflows/windows.yml)
+Github-CI:
+[![Build Status][github_linux_status]][github_linux_link]
+[![Build Status][github_macos_status]][github_macos_link]
+[![Build Status][github_windows_status]][github_windows_link]
 
-Bazel C++ sample with tests and GitHub CI support for Linux, MacOS and Windows !
+[github_linux_status]: https://github.com/Mizux/bazel-cpp/actions/workflows/amd64_linux.yml/badge.svg
+[github_linux_link]: https://github.com/Mizux/bazel-cpp/actions/workflows/amd64_linux.yml
+[github_macos_status]: https://github.com/Mizux/bazel-cpp/actions/workflows/amd64_macos.yml/badge.svg
+[github_macos_link]: https://github.com/Mizux/bazel-cpp/actions/workflows/amd64_macos.yml
+[github_windows_status]: https://github.com/Mizux/bazel-cpp/actions/workflows/amd64_windows.yml/badge.svg
+[github_windows_link]: https://github.com/Mizux/bazel-cpp/actions/workflows/amd64_windows.yml
+
+# Introduction
+<nav for="project"> |
+<a href="#requirement">Requirement</a> |
+<a href="#codemap">Codemap</a> |
+<a href="#dependencies">Dependencies</a> |
+<a href="#build">Build</a> |
+<a href="#tutorial">Tutorial</a> |
+<a href="ci/README.md">CI</a> |
+<a href="#appendices">Appendices</a> |
+<a href="#license">License</a> |
+</nav>
+
+Bazel C++ sample with tests and GitHub CI support.
+
+This project should run on GNU/Linux, MacOS and Windows.
 
 ## Build
 To build this example you should use:
@@ -79,6 +100,7 @@ cc_library(
 )
 ```
 
+### local dependencies
 To use our `hello-time` libary, an extra dependency is added in the form of `//path/to/package:target_name`, in this case, it's `//lib:hello-time`.
 
 main/BUILD:
@@ -93,7 +115,7 @@ cc_binary(
 )
 ```
 
-### CI Setup
+## CI Setup
 Please take a look at [.github/workflows](.github/workflows) to find the configuration file for each jobs.
 
 To install *bazel* on each hosted runner, follow these links:
@@ -107,3 +129,18 @@ ref: https://docs.github.com/en/actions/using-github-hosted-runners/customizing-
 * Windows -> `choco install bazel`<br>
   ref: https://community.chocolatey.org/packages/bazel/
 
+## Appendices
+Few links on the subject...
+
+### Resources
+Project layout:
+* The Pitchfork Layout Revision 1 (cxx-pflR1)
+
+Bazel:
+* https://docs.bazel.build/versions
+
+### Misc
+Image has been generated using [plantuml](http://plantuml.com/):
+```bash
+plantuml -Tsvg docs/{file}.dot
+```
