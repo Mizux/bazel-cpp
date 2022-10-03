@@ -63,7 +63,7 @@ To build this example you should use:
 
 * on Windows when using MSVC:
   ```sh
-  bazel build --cxxopt="-std:c++17" //...:all
+  bazel build --cxxopt="/std:c++17" //...:all
   ```
 
 ## Running Tests
@@ -76,7 +76,7 @@ To build this example you should use:
 
 * on Windows when using MSVC:
   ```sh
-  bazel test --cxxopt="-std:c++17" //...:all
+  bazel test --cxxopt="/std:c++17" //...:all
   ```
 
 ## Tutorial
