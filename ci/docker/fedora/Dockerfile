@@ -20,13 +20,13 @@ FROM devel AS build
 RUN bazel version
 RUN bazel build \
  -c opt \
- --repo_env=BAZEL_CXXOPTS="-std=c++17" \
+ --action_env=BAZEL_CXXOPTS="-std=c++17" \
  --subcommands=true \
  ...
 
 FROM build AS test
 RUN bazel test \
  -c opt \
- --repo_env=BAZEL_CXXOPTS="-std=c++17" \
+ --action_env=BAZEL_CXXOPTS="-std=c++17" \
  --test_output=all \
  ...
