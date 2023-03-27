@@ -1,11 +1,11 @@
-#include "foobar/FooBar.hpp"
+#include "foobar/foobar.h"
 
 #include <iostream>
 #include <string>
 #include <utility>
 
-#include "bar/Bar.hpp"
-#include "foo/Foo.hpp"
+#include "bar/bar.h"
+#include "foo/foo.h"
 
 namespace foobar {
 std::vector<std::string> stringVectorOutput(int level) {

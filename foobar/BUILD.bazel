@@ -2,19 +2,19 @@ load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
   name = "foobar",
-  srcs = ["src/FooBar.cpp"],
-  hdrs = ["include/foobar/FooBar.hpp"],
-  strip_include_prefix = "include",
+  srcs = ["foobar.cc"],
+  hdrs = ["foobar.h"],
+  #strip_include_prefix = "include",
   deps = [
-    "//Bar:bar",
-    "//Foo:foo",
+    "//bar:bar",
+    "//foo:foo",
   ],
   visibility = ["//visibility:public"],
 )
 
 cc_test(
-  name = "foobar-test",
-  srcs = ["tests/foobar_test.cpp"],
+  name = "foobar_test",
+  srcs = ["foobar_test.cc"],
   #copts = ["-Iexternal/gtest/include"],
   deps = [
     "@com_google_googletest//:gtest_main",

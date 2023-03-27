@@ -3,8 +3,8 @@
 #include <cstdint>
 #include <string>
 #include <vector>
-#include <bar/Bar.hpp>
-#include <foo/Foo.hpp>
+#include "bar/bar.h"
+#include "foo/foo.h"
 
 //! @namespace foobar The FooBar namespace
 namespace foobar {

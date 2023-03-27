@@ -1,8 +1,8 @@
 #include <iostream>
 
-#include <foo/Foo.hpp>
-#include <bar/Bar.hpp>
-#include <foobar/FooBar.hpp>
+#include "foo/foo.h"
+#include "bar/bar.h"
+#include "foobar/foobar.h"
 
 int main(int /*argc*/, char** /*argv*/) {
   foo::freeFunction(0);
