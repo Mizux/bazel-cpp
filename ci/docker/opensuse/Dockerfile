@@ -9,8 +9,8 @@ RUN zypper update -y \
 ENV CC=gcc CXX=g++
 
 # Install Bazel 6
-RUN zypper addrepo https://download.opensuse.org/repositories/home:ftake:branches:M17N/openSUSE_Tumbleweed/home:ftake:branches:M17N.repo \
-&& zypper --non-interactive --no-gpg-checks refresh \
+RUN zypper addrepo -Gf \
+https://download.opensuse.org/repositories/home:ftake:branches:M17N/openSUSE_Tumbleweed/home:ftake:branches:M17N.repo \
 && zypper install -y bazel6 \
 && zypper clean -a
 
