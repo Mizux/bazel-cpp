@@ -3,8 +3,15 @@ name: amd64 macOS
 on: [push, pull_request]
 
 jobs:
-  bazel:
+  macos:
     runs-on: macos-latest
+    strategy:
+      matrix:
+        option: [
+          '--repo_env=BAZEL_CXXOPTS="-std=c++17"',
+          '--action_env=BAZEL_CXXOPTS="-std=c++17"',
+          '--cxxopt="-std=c++17"']
+      fail-fast: false
     steps:
     - uses: actions/checkout@v3
     - name: Install Bazel
@@ -15,6 +22,16 @@ jobs:
     - name: Check Bazel
       run: bazel version
     - name: Build
-      run: bazel build -c opt --action_env=BAZEL_CXXOPTS="-std=c++17" --subcommands=true ...
+      run: >
+        bazel build
+        -c opt
+        ${{ matrix.option }}
+        --subcommands=true
+        ...
     - name: Test
-      run: bazel test -c opt --action_env=BAZEL_CXXOPTS="-std=c++17" --test_output=all ...
+      run: >
+        bazel test
+        -c opt
+        ${{ matrix.option }}
+        --test_output=all
+        ...
