@@ -34,7 +34,7 @@ This project should run on GNU/Linux, MacOS and Windows.
 
 You'll need:
 
-* "Bazel >= 4.0".
+* "Bazel >= 5.0".
 
 ## Codemap
 
