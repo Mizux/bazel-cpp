@@ -5,7 +5,8 @@ on: [push, pull_request]
 jobs:
   # Building using the github runner environement directly.
   windows:
-    runs-on: windows-latest
+    # Workaround for https://github.com/bazelbuild/bazel/issues/18592
+    runs-on: windows-2019
     strategy:
       matrix:
         option: [
