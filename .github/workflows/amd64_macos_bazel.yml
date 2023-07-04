@@ -1,12 +1,11 @@
-# ref: https://github.com/actions/virtual-environments
-name: amd64 Linux
+# ref: https://github.com/actions/runner-images
+name: amd64 macOS Bazel
 
 on: [push, pull_request]
 
 jobs:
-  # Building using the github runner environement directly.
-  linux:
-    runs-on: ubuntu-latest
+  macos:
+    runs-on: macos-latest
     strategy:
       matrix:
         option: [
@@ -19,13 +18,11 @@ jobs:
     - uses: actions/checkout@v3
     - name: Install Bazel
       run: |
-        curl -fsSL https://bazel.build/bazel-release.pub.gpg | gpg --dearmor > bazel.gpg
-        sudo mv bazel.gpg /etc/apt/trusted.gpg.d/
-        echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
-        sudo apt-get update
-        sudo apt-get install bazel
-    - name: Check bazel
-      run:  bazel version
+        brew update
+        brew unlink bazelisk
+        brew install bazel
+    - name: Check Bazel
+      run: bazel version
     - name: Build
       run: >
         bazel build

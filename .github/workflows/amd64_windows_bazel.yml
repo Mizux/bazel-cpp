@@ -1,5 +1,5 @@
-# ref: https://github.com/actions/virtual-environments
-name: amd64 Windows
+# ref: https://github.com/actions/runner-images
+name: amd64 Windows Bazel
 
 on: [push, pull_request]
 
