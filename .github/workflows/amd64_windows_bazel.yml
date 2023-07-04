@@ -1,0 +1,39 @@
+name: amd64 Windows Bazel
+
+on: [push, pull_request]
+
+jobs:
+  # Building using the github runner environement directly.
+  windows:
+    # Workaround for https://github.com/bazelbuild/bazel/issues/18592
+    strategy:
+      matrix:
+        runner: [windows-2022, windows-2019]
+        option: [
+          '',
+          '--repo_env=BAZEL_CXXOPTS="/std:c++17"',
+          '--action_env=BAZEL_CXXOPTS="/std:c++17"',
+          '--cxxopt="/std:c++17"']
+      fail-fast: false # Don't cancel all jobs if one fails.
+    runs-on: ${{ matrix.runner }}
+    #runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install Bazel
+      run: choco install bazel
+    - name: Check Bazel
+      run: bazel version
+    - name: Build
+      run: >
+        bazel build
+        -c opt
+        ${{ matrix.option }}
+        --subcommands=true
+        ...
+    - name: Test
+      run: >
+        bazel test
+        -c opt
+        ${{ matrix.option }}
+        --test_output=all
+        ...

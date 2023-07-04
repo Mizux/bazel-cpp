@@ -1,23 +1,25 @@
-name: amd64 Windows
+name: amd64 macOS Bazel
 
 on: [push, pull_request]
 
 jobs:
-  # Building using the github runner environement directly.
-  windows:
-    # Workaround for https://github.com/bazelbuild/bazel/issues/18592
-    runs-on: windows-2019
+  macos:
+    runs-on: macos-latest
     strategy:
       matrix:
         option: [
-          '--repo_env=BAZEL_CXXOPTS="/std:c++17"',
-          '--action_env=BAZEL_CXXOPTS="/std:c++17"',
-          '--cxxopt="/std:c++17"']
+          '',
+          '--repo_env=BAZEL_CXXOPTS="-std=c++17"',
+          '--action_env=BAZEL_CXXOPTS="-std=c++17"',
+          '--cxxopt="-std=c++17"']
       fail-fast: false
     steps:
     - uses: actions/checkout@v3
     - name: Install Bazel
-      run: choco install bazel
+      run: |
+        brew update
+        brew unlink bazelisk
+        brew install bazel
     - name: Check Bazel
       run: bazel version
     - name: Build
