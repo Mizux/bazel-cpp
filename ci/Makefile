@@ -4,8 +4,8 @@ SHA1 := $(shell git rev-parse --verify HEAD)
 
 # General commands
 .PHONY: help
-BOLD=\e[1m
-RESET=\e[0m
+BOLD:=\e[1m
+RESET:=\e[0m
 
 help:
 	@echo -e "${BOLD}SYNOPSIS${RESET}"
@@ -39,6 +39,7 @@ help:
 	@echo -e "\t\t${BOLD}devel${RESET}"
 	@echo -e "\t\t${BOLD}build${RESET}"
 	@echo -e "\t\t${BOLD}test${RESET}"
+	@echo -e "\te.g. 'make ubuntu_test'"
 	@echo
 	@echo -e "\tBuild using docker buildx with a platform specified."
 	@echo -e "\t${BOLD}<platform>_<stage>${RESET}: build <stage> docker images for ALL DISTROS."
@@ -77,7 +78,7 @@ help:
 # Need to add cmd_distro to PHONY otherwise target are ignored since they do not
 # contain recipe (using FORCE do not work here)
 .PHONY: all
-all: build
+all: all_test
 
 # Delete all implicit rules to speed up makefile
 MAKEFLAGS += --no-builtin-rules
@@ -101,7 +102,7 @@ endif
 DOCKER_RUN_CMD := docker run --rm --init --net=host
 
 # Currently supported distro
-DISTROS = alpine archlinux centos debian fedora opensuse ubuntu
+DISTROS := alpine archlinux centos debian fedora opensuse ubuntu
 
 # $* stem
 # $< first prerequist
@@ -110,7 +111,8 @@ DISTROS = alpine archlinux centos debian fedora opensuse ubuntu
 ############
 ## STAGES ##
 ############
-STAGES = env devel build test
+STAGES := env devel build test
+
 define make-stage-target =
 #$$(info STAGE: $1)
 #$$(info Create targets: all_$1 $(addsuffix _$1, $(DISTROS)).)
@@ -158,7 +160,7 @@ clean_all: $(addprefix clean_all_, $(STAGES))
 ##############
 # ref: https://go.dev/doc/install/source#environment
 # ref: https://github.com/containerd/containerd/blob/269548fa27e0089a8b8278fc4fc781d7f65a939b/platforms/platforms.go#L80-L94
-PLATFORMS = \
+PLATFORMS := \
  386 amd64 \
  arm arm64 \
  mips mipsle mips64 mips64le \
@@ -167,8 +169,7 @@ PLATFORMS = \
  s390x
 
 define make-platform-stage-target =
-#$$(info PLATFORM: $1)
-#$$(info STAGE: $2)
+#$$(info PLATFORM: '$1' STAGE: '$2')
 #$$(info Create targets: $1_all_$2 $(addprefix $1_, $(addsuffix _$2, $(DISTROS))).)
 targets_$1_$2 = $(addprefix $1_, $(addsuffix _$2, $(DISTROS)))
 .PHONY: $1_all_$2 $$(targets_$1_$2)
@@ -191,7 +192,7 @@ cache/$1/%/docker_$2.tar: $1_%_$2
 sh_targets_$1_$2 = $(addprefix sh_$1_, $(addsuffix _$2, $(DISTROS)))
 .PHONY: $$(sh_targets_$1_$2)
 $$(sh_targets_$1_$2): sh_$1_%_$2: $1_%_$2
-	${DOCKER_RUN_CMD} --platform linux/$1 -it --name ${PROJECT}_${BUILD_SYSTEM}_$1_$$*_$2 ${IMAGE}:$1_$$*_$2
+	${DOCKER_RUN_CMD} --platform linux/$1 -it --name ${IMAGE}_$1_$$*_$2 ${IMAGE}:$1_$$*_$2
 
 #$$(info Create targets: clean_$1_all_$2 $(addprefix clean_$1_, $(addsuffix _$2, $(DISTROS))).)
 clean_targets_$1_$2 = $(addprefix clean_$1_, $(addsuffix _$2, $(DISTROS)))
