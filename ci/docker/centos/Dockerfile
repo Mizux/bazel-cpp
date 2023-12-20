@@ -5,17 +5,19 @@ FROM quay.io/centos/centos:stream AS env
 # Install system build dependencies
 ENV PATH=/usr/local/bin:$PATH
 RUN dnf -y update \
-&& dnf -y install git wget zlib-devel \
+&& dnf -y install git wget zlib-devel gcc-toolset-11 \
 && dnf -y groupinstall "Development Tools" \
 && dnf clean all \
 && rm -rf /var/cache/dnf
-# Install bazel
-# see: https://docs.bazel.build/versions/master/install-redhat.html#installing-on-centos-7
-RUN dnf config-manager --add-repo \
-https://copr.fedorainfracloud.org/coprs/vbatts/bazel/repo/epel-8/vbatts-bazel-epel-8.repo \
-&& dnf -y install bazel5 \
-&& dnf clean all \
-&& rm -rf /var/cache/dnf
+
+RUN echo "source /opt/rh/gcc-toolset-11/enable" >> /etc/bashrc
+SHELL ["/bin/bash", "--login", "-c"]
+
+# Install Bazelisk
+RUN wget \
+https://github.com/bazelbuild/bazelisk/releases/download/v1.19.0/bazelisk-linux-amd64 \
+&& chmod +x bazelisk-linux-amd64 \
+&& mv bazelisk-linux-amd64 /usr/local/bin/bazel
 
 FROM env AS devel
 WORKDIR /home/project
@@ -25,13 +27,11 @@ FROM devel AS build
 RUN bazel version
 RUN bazel build \
  -c opt \
- --action_env=BAZEL_CXXOPTS="-std=c++17" \
  --subcommands=true \
  ...
 
 FROM build AS test
 RUN bazel test \
  -c opt \
- --action_env=BAZEL_CXXOPTS="-std=c++17" \
  --test_output=all \
  ...
