@@ -1,8 +1,10 @@
 Github-CI:
-[![Build Status][amd64_linux_status]][amd64_linux_link]
-[![Build Status][amd64_macos_status]][amd64_macos_link]
-[![Build Status][amd64_windows_status]][amd64_windows_link]
-[![Build Status][amd64_docker_status]][amd64_docker_link]
+| OS      | Bazel |
+|:------- | :---: |
+| Linux   | [![Build Status][amd64_linux_status]][amd64_linux_link] |
+| MacOS   | [![Build Status][amd64_macos_status]][amd64_macos_link] |
+| Windows | [![Build Status][amd64_windows_status]][amd64_windows_link] |
+| Docker  | [![Build Status][amd64_docker_status]][amd64_docker_link] |
 
 [amd64_linux_status]: ./../../actions/workflows/amd64_linux_bazel.yml/badge.svg
 [amd64_linux_link]: ./../../actions/workflows/amd64_linux_bazel.yml
@@ -34,7 +36,7 @@ This project should run on GNU/Linux, MacOS and Windows.
 
 You'll need:
 
-* "Bazel >= 5.0".
+* "Bazel >= 6.0".
 
 ## Codemap
 
@@ -62,11 +64,13 @@ note: Since `Foo` is a public dependency of `FooBar`, then `FooBarApp` will
 To build this example you should use:
 
 * on UNIX:
+
   ```sh
   bazel build -c opt --action_env=BAZEL_CXXOPTS="-std=c++17" --subcommands=true ...
   ```
 
 * on Windows when using MSVC:
+
   ```sh
   bazel build -c opt --cxxopt="/std:c++17" --subcommands=true ...
   ```
@@ -76,11 +80,13 @@ To build this example you should use:
 To build this example you should use:
 
 * on UNIX:
+
   ```sh
   bazel test -c opt --action_env=BAZEL_CXXOPTS="-std=c++17" --test_output=all ...
   ```
 
 * on Windows when using MSVC:
+
   ```sh
   bazel test -c opt --cxxopt="/std:c++17" --test_output=all ...
   ```
@@ -139,14 +145,17 @@ Few links on the subject...
 ### Resources
 
 Project layout:
+
 * The Pitchfork Layout Revision 1 (cxx-pflR1)
 
 Bazel:
+
 * https://docs.bazel.build/versions
 
 ### Misc
 
 Image has been generated using [plantuml](http://plantuml.com/):
+
 ```bash
 plantuml -Tsvg docs/{file}.dot
 ```
@@ -160,4 +169,3 @@ Apache 2. See the LICENSE file for details.
 
 This is not an official Google product, it is just code that happens to be
 owned by Google.
-
