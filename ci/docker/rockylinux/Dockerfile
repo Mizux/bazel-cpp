@@ -1,24 +1,25 @@
 # Create a virtual environment with all tools installed
-# ref: https://quay.io/repository/centos/centos
-FROM quay.io/centos/centos:stream AS env
+# ref: https://hub.docker.com/_/rockylinux
+FROM rockylinux:9 AS env
 
 # Install system build dependencies
 ENV PATH=/usr/local/bin:$PATH
 RUN dnf -y update \
-&& dnf -y install git wget zlib-devel gcc-toolset-11 \
+&& dnf -y install git wget zlib-devel gcc-toolset-13 \
 && dnf -y groupinstall "Development Tools" \
 && dnf clean all \
 && rm -rf /var/cache/dnf
 
-RUN echo "source /opt/rh/gcc-toolset-11/enable" >> /etc/bashrc
+RUN echo "source /opt/rh/gcc-toolset-13/enable" >> /etc/bashrc
 SHELL ["/bin/bash", "--login", "-c"]
 
 # Install Bazelisk
 RUN wget \
-https://github.com/bazelbuild/bazelisk/releases/download/v1.19.0/bazelisk-linux-amd64 \
+https://github.com/bazelbuild/bazelisk/releases/download/v1.20.0/bazelisk-linux-amd64 \
 && chmod +x bazelisk-linux-amd64 \
 && mv bazelisk-linux-amd64 /usr/local/bin/bazel
 
+# Add the library src to our build env
 FROM env AS devel
 WORKDIR /home/project
 COPY . .
@@ -33,5 +34,5 @@ RUN bazel build \
 FROM build AS test
 RUN bazel test \
  -c opt \
- --test_output=all \
+ --test_output=errors \
  ...
