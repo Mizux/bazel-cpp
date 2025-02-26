@@ -3,16 +3,20 @@ name: amd64 Windows Bazel
 
 on: [push, pull_request, workflow_dispatch]
 
+concurrency:
+  group: ${{github.workflow}}-${{github.ref}}
+  cancel-in-progress: true
+
 # Building using the github runner environement directly.
 jobs:
   native:
     strategy:
       matrix:
         # VS-2022 broken see https://github.com/bazelbuild/bazel/issues/18592
-        runner: [windows-2022, windows-2019]
+        runner: [windows-2022]
       fail-fast: false # Don't cancel all jobs if one fails.
-    name: ${{ matrix.runner }} • Bazel
-    runs-on: ${{ matrix.runner }}
+    name: ${{matrix.runner}}•Bazel
+    runs-on: ${{matrix.runner}}
     steps:
       - uses: actions/checkout@v4
       - name: Install Bazel

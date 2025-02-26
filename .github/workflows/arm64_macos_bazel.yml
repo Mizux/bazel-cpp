@@ -1,5 +1,5 @@
 # ref: https://github.com/actions/runner-images
-name: amd64 MacOS Bazel
+name: arm64 MacOS Bazel
 
 on: [push, pull_request, workflow_dispatch]
 
@@ -11,7 +11,7 @@ concurrency:
 jobs:
   native:
     name: MacOS•Bazel
-    runs-on: macos-13 # latest intel based macos runner
+    runs-on: macos-latest # arm64 based macos runner
     steps:
       - uses: actions/checkout@v4
       - name: Show Bazel version
