@@ -9,7 +9,7 @@ cc_library(
 )
 
 cc_test(
-  name = "foor_test",
+  name = "foo_test",
   srcs = ["foo_test.cc"],
   #copts = ["-Iexternal/gtest/include"],
   deps = [
