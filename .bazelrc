@@ -24,7 +24,7 @@ startup --windows_enable_symlinks
 build:windows --enable_runfiles
 
 # Print command lines for build commands.
-# build --subcommands=pretty_print
+#build --subcommands=pretty_print
 
 # Enable logging error output.
 test --test_output=errors
