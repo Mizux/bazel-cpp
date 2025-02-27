@@ -3,6 +3,7 @@ Github-CI:
 |:------- | :---: |
 | Linux   | [![Build Status][amd64_linux_status]][amd64_linux_link] |
 | MacOS   | [![Build Status][amd64_macos_status]][amd64_macos_link] |
+| MacOS   | [![Build Status][arm64_macos_status]][arm64_macos_link] |
 | Windows | [![Build Status][amd64_windows_status]][amd64_windows_link] |
 | Docker  | [![Build Status][amd64_docker_status]][amd64_docker_link] |
 
@@ -10,6 +11,8 @@ Github-CI:
 [amd64_linux_link]: ./../../actions/workflows/amd64_linux_bazel.yml
 [amd64_macos_status]: ./../../actions/workflows/amd64_macos_bazel.yml/badge.svg
 [amd64_macos_link]: ./../../actions/workflows/amd64_macos_bazel.yml
+[arm64_macos_status]: ./../../actions/workflows/arm64_macos_bazel.yml/badge.svg
+[arm64_macos_link]: ./../../actions/workflows/arm64_macos_bazel.yml
 [amd64_windows_status]: ./../../actions/workflows/amd64_windows_bazel.yml/badge.svg
 [amd64_windows_link]: ./../../actions/workflows/amd64_windows_bazel.yml
 [amd64_docker_status]: ./../../actions/workflows/amd64_docker_bazel.yml/badge.svg
