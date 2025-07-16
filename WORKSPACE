@@ -15,7 +15,7 @@ bazel_skylib_workspace()
 ## Bazel rules.
 git_repository(
     name = "platforms",
-    tag = "0.0.10",
+    tag = "0.0.11",
     remote = "https://github.com/bazelbuild/platforms.git",
 )
 
@@ -27,7 +27,7 @@ git_repository(
 
 ## Testing
 git_repository(
-    name = "com_google_googletest",
-    tag = "v1.15.2",
+    name = "googletest",
+    tag = "v1.17.0",
     remote = "https://github.com/google/googletest.git",
 )

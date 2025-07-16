@@ -17,7 +17,7 @@ cc_test(
   srcs = ["foobar_test.cc"],
   #copts = ["-Iexternal/gtest/include"],
   deps = [
-    "@com_google_googletest//:gtest_main",
+    "@googletest//:gtest_main",
     ":foobar",
   ],
 )
