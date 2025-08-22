@@ -13,8 +13,8 @@ jobs:
     name: Linux•Bazel(bzlmod)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: bazel-contrib/setup-bazel@0.8.4
+      - uses: actions/checkout@v5
+      - uses: bazel-contrib/setup-bazel@0.15.0
         with:
           bazelisk-cache: true
           disk-cache: ${{github.workflow}}
@@ -40,8 +40,8 @@ jobs:
     name: Linux•Bazel(workspace)
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: bazel-contrib/setup-bazel@0.8.4
+      - uses: actions/checkout@v5
+      - uses: bazel-contrib/setup-bazel@0.15.0
         with:
           bazelisk-cache: true
           disk-cache: ${{github.workflow}}
