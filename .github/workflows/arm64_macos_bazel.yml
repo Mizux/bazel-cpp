@@ -15,16 +15,24 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Show Bazel version
-        run: bazel --version
+        run: bazel version
       - name: Build
         run: >
           bazel build
           -c opt
           --subcommands=pretty_print
-          ...
+          --enable_bzlmod
+          //...
       - name: Test
         run: >
           bazel test
           -c opt
-          --test_output=errors
-          ...
+          --subcommands=pretty_print
+          --enable_bzlmod
+          //...
+
+  arm64_macos_bazel:
+    runs-on: ubuntu-latest
+    needs: native
+    steps:
+      - uses: actions/checkout@v5
