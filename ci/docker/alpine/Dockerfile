@@ -18,7 +18,7 @@ FROM devel AS build
 RUN bazel version
 RUN bazel build \
  -c opt \
- --subcommands=true \
+ --subcommands=pretty_print \
  ...
 
 FROM build AS test
