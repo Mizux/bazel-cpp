@@ -1,6 +1,6 @@
+# Project Files unneeded by docker
 .dockerignore
 
-# Project Files unneeded by docker
 .git
 .gitignore
 .github
@@ -13,12 +13,11 @@ LICENSE
 README.md
 docs
 
-
 # CI
 ci/Makefile
 ci/docker
 ci/docs
-**/Dockerfile
+ci/cache
 
 # Native build
 bazel-*/
