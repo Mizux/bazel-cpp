@@ -5,11 +5,11 @@ FROM fedora:latest AS env
 # Install system build dependencies
 ENV PATH=/usr/local/bin:$PATH
 RUN dnf -y update \
-&& dnf -y install git wget \
-&& dnf -y install @development-tools \
-&& dnf -y install gcc-c++ zlib-devel \
-&& dnf -y install dnf-plugins-core \
-&& dnf -y install which \
+&& dnf -y install \
+ git wget \
+ @development-tools \
+ gcc-c++ zlib-devel \
+ dnf-plugins-core which \
 && dnf clean all
 
 # Install Bazelisk
@@ -25,13 +25,7 @@ COPY . .
 
 FROM devel AS build
 RUN bazel version
-RUN bazel build \
- -c opt \
- --subcommands=pretty_print \
- ...
+RUN bazel build --config=ci //...
 
 FROM build AS test
-RUN bazel test \
- -c opt \
- --test_output=errors \
- ...
+RUN bazel test --config=ci //...

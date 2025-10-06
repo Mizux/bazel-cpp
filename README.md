@@ -39,7 +39,7 @@ This project should run on GNU/Linux, MacOS and Windows.
 
 You'll need:
 
-* "Bazel >= 6.0".
+* "Bazel >= 7.0".
 
 ## Codemap
 
@@ -66,33 +66,17 @@ note: Since `Foo` is a public dependency of `FooBar`, then `FooBarApp` will
 
 To build this example you should use:
 
-* on UNIX:
-
-  ```sh
-  bazel build -c opt --action_env=BAZEL_CXXOPTS="-std=c++17" --subcommands=true ...
-  ```
-
-* on Windows when using MSVC:
-
-  ```sh
-  bazel build -c opt --cxxopt="/std:c++17" --subcommands=true ...
-  ```
+```sh
+bazel build -c opt --subcommands=pretty_print ...
+```
 
 ## Running Tests
 
 To build this example you should use:
 
-* on UNIX:
-
-  ```sh
-  bazel test -c opt --action_env=BAZEL_CXXOPTS="-std=c++17" --test_output=all ...
-  ```
-
-* on Windows when using MSVC:
-
-  ```sh
-  bazel test -c opt --cxxopt="/std:c++17" --test_output=all ...
-  ```
+```sh
+bazel test -c opt --test_output=all ...
+```
 
 ## Tutorial
 ### Visibility

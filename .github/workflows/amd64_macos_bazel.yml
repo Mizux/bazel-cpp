@@ -17,19 +17,9 @@ jobs:
       - name: Show Bazel version
         run: bazel version
       - name: Build
-        run: >
-          bazel build
-          -c opt
-          --subcommands=pretty_print
-          --enable_bzlmod
-          //...
+        run: bazel build --config=ci //...
       - name: Test
-        run: >
-          bazel test
-          -c opt
-          --subcommands=pretty_print
-          --enable_bzlmod
-          //...
+        run: bazel test --config=ci //...
 
   amd64_macos_bazel:
     runs-on: ubuntu-latest

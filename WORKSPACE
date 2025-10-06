@@ -6,28 +6,40 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 ## Bazel Skylib rules.
 git_repository(
     name = "bazel_skylib",
-    tag = "1.7.1",
+    commit = "56a2abbaf131332835ab2721a258ea3c763a7178",
+    #tag = "1.8.1",
     remote = "https://github.com/bazelbuild/bazel-skylib.git",
 )
 load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
 bazel_skylib_workspace()
 
-## Bazel rules.
+git_repository(
+    name = "bazel_features",
+    tag = "v1.32.0",
+    remote = "https://github.com/bazel-contrib/bazel_features.git",
+)
+load("@bazel_features//:deps.bzl", "bazel_features_deps")
+bazel_features_deps()
+
+## Bazel rules...
 git_repository(
     name = "platforms",
-    tag = "0.0.11",
+    commit = "ab99943ab6bed53cff461a3afa99fc79d31e4351",
+    #tag = "1.0.0",
     remote = "https://github.com/bazelbuild/platforms.git",
 )
 
 git_repository(
     name = "rules_cc",
-    tag = "0.1.1",
+    commit = "cbee84ad7f583049823f3d1497aab1264cf94f26",
+    #tag = "0.1.4",
     remote = "https://github.com/bazelbuild/rules_cc.git",
 )
 
 ## Testing
 git_repository(
     name = "googletest",
-    tag = "v1.17.0",
+    commit = "52eb8108c5bdec04579160ae17225d66034bd723",
+    #tag = "v1.17.0",
     remote = "https://github.com/google/googletest.git",
 )

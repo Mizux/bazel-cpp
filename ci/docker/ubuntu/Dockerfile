@@ -8,8 +8,9 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Install system build dependencies
 RUN apt update -qq \
-&& apt install -yq git wget curl libssl-dev build-essential \
-&& apt install -yq default-jdk \
+&& apt install -yq \
+ git wget curl libssl-dev build-essential \
+ default-jdk \
 && apt clean \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -26,13 +27,7 @@ COPY . .
 
 FROM devel AS build
 RUN bazel version
-RUN bazel build \
- -c opt \
- --subcommands=pretty_print \
- ...
+RUN bazel build --config=ci //...
 
 FROM build AS test
-RUN bazel test \
- -c opt \
- --test_output=errors \
- ...
+RUN bazel test --config=ci //...

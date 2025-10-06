@@ -3,11 +3,12 @@
 FROM debian:latest AS env
 
 # Install system build dependencies
-RUN apt-get update -qq \
-&& apt-get install -yq git wget curl libssl-dev build-essential \
-&& apt-get install -yq default-jdk \
-&& apt-get clean \
+RUN apt update -qq \
+&& apt install -yq git wget curl libssl-dev build-essential \
+&& apt install -yq default-jdk \
+&& apt clean \
 && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 # Install Bazelisk
 ARG TARGETARCH=amd64
 RUN wget \
@@ -21,13 +22,7 @@ COPY . .
 
 FROM devel AS build
 RUN bazel version
-RUN bazel build \
- -c opt \
- --subcommands=pretty_print \
- ...
+RUN bazel build --config=ci //...
 
 FROM build AS test
-RUN bazel test \
- -c opt \
- --test_output=errors \
- ...
+RUN bazel test --config=ci //...
