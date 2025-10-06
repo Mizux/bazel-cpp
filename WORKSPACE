@@ -1,9 +1,15 @@
 workspace(name = "bazel-cpp")
-
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
+################################################################################
+#
+# WORKSPACE is being deprecated in favor of the new Bzlmod dependency system.
+# It will be removed at some point in the future.
+#
+################################################################################
+
 # Bazel Extensions
-## Bazel Skylib rules.
+## Needed for Abseil.
 git_repository(
     name = "bazel_skylib",
     commit = "56a2abbaf131332835ab2721a258ea3c763a7178",
@@ -21,7 +27,7 @@ git_repository(
 load("@bazel_features//:deps.bzl", "bazel_features_deps")
 bazel_features_deps()
 
-## Bazel rules...
+## Bazel rules.
 git_repository(
     name = "platforms",
     commit = "ab99943ab6bed53cff461a3afa99fc79d31e4351",
@@ -37,6 +43,23 @@ git_repository(
 )
 
 ## Testing
+
+# Abseil-cpp
+git_repository(
+    name = "abseil-cpp",
+    #commit = "",
+    tag = "20250814.0",
+    remote = "https://github.com/abseil/abseil-cpp.git",
+)
+
+## Re2
+git_repository(
+    name = "re2",
+    tag = "2024-07-02",
+    remote = "https://github.com/google/re2.git",
+    #repo_mapping = {"@abseil-cpp": "@com_google_absl"},
+)
+
 git_repository(
     name = "googletest",
     commit = "52eb8108c5bdec04579160ae17225d66034bd723",
