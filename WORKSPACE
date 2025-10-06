@@ -21,7 +21,8 @@ bazel_skylib_workspace()
 
 git_repository(
     name = "bazel_features",
-    tag = "v1.32.0",
+    commit = "3f23ff44ff85416d96566bee8e407694cdb6f1f8",
+    #tag = "v1.32.0",
     remote = "https://github.com/bazel-contrib/bazel_features.git",
 )
 load("@bazel_features//:deps.bzl", "bazel_features_deps")
@@ -47,15 +48,16 @@ git_repository(
 # Abseil-cpp
 git_repository(
     name = "abseil-cpp",
-    #commit = "",
-    tag = "20250814.0",
+    commit = "987c57f325f7fa8472fa84e1f885f7534d391b0d",
+    #tag = "20250814.0",
     remote = "https://github.com/abseil/abseil-cpp.git",
 )
 
 ## Re2
 git_repository(
     name = "re2",
-    tag = "2024-07-02",
+    commit = "6dcd83d60f7944926bfd308cc13979fc53dd69ca",
+    #tag = "2024-07-02",
     remote = "https://github.com/google/re2.git",
     #repo_mapping = {"@abseil-cpp": "@com_google_absl"},
 )
