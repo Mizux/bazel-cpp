@@ -1,7 +1,17 @@
 bazel-*
+user.bazelrc
 
 # IDE
+.vs/
+.vscode/
+.cache/
+# Kdevelop
+.kdev4/
+*.kdev4
+# vim
+compile_commands.json
 *.swp
+*.user
 
 # Ignore Bzlmod lock file until it is more stable
 MODULE.bazel.lock
