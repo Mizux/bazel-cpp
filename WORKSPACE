@@ -43,8 +43,6 @@ git_repository(
     remote = "https://github.com/bazelbuild/rules_cc.git",
 )
 
-# Testing
-
 ## Abseil-cpp
 git_repository(
     name = "abseil-cpp",
@@ -62,6 +60,7 @@ git_repository(
     #repo_mapping = {"@abseil-cpp": "@com_google_absl"},
 )
 
+# Testing
 ## Googletest
 git_repository(
     name = "googletest",
