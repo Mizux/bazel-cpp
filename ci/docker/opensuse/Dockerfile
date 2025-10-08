@@ -5,7 +5,8 @@ FROM opensuse/tumbleweed AS env
 # Install system build dependencies
 ENV PATH=/usr/local/bin:$PATH
 RUN zypper update -y \
-&& zypper install -y git wget gcc gcc-c++ zlib-devel \
+&& zypper install -y \
+ git wget gcc gcc-c++ zlib-devel \
 && zypper clean -a
 ENV CC=gcc CXX=g++
 
