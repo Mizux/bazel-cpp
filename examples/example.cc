@@ -1,7 +1,7 @@
 #include <iostream>
 
-#include "foo/foo.h"
 #include "bar/bar.h"
+#include "foo/foo.h"
 #include "foobar/foobar.h"
 
 int main(int /*argc*/, char** /*argv*/) {

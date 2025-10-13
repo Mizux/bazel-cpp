@@ -67,7 +67,8 @@ int stringJaggedArrayInput(std::vector<std::vector<std::string>> data) {
   return data.size();
 }
 
-int stringJaggedArrayRefInput(const std::vector<std::vector<std::string>>& data) {
+int stringJaggedArrayRefInput(
+    const std::vector<std::vector<std::string>>& data) {
   std::cout << "Enter " << __func__ << "()" << std::endl;
   std::cout << "{";
   for (const auto& inner : data) {
@@ -120,7 +121,8 @@ std::vector<std::vector<std::pair<int, int>>> pairJaggedArrayOutput(int level) {
   std::vector<std::vector<std::pair<int, int>>> result;
   result.reserve(level);
   for (int i = 1; i <= level; ++i) {
-    result.emplace_back(std::vector<std::pair<int, int>>(i, std::make_pair(i, i)));
+    result.emplace_back(
+        std::vector<std::pair<int, int>>(i, std::make_pair(i, i)));
   }
   std::cout << "[" << level << "] Exit " << __func__ << "()" << std::endl;
   return result;
@@ -141,7 +143,8 @@ int pairJaggedArrayInput(std::vector<std::vector<std::pair<int, int>>> data) {
   return data.size();
 }
 
-int pairJaggedArrayRefInput(const std::vector<std::vector<std::pair<int, int>>>& data) {
+int pairJaggedArrayRefInput(
+    const std::vector<std::vector<std::pair<int, int>>>& data) {
   std::cout << "Enter " << __func__ << "()" << std::endl;
   std::cout << "{";
   for (const auto& inner : data) {
@@ -164,10 +167,12 @@ void freeFunction(int level) {
 }
 
 void freeFunction(int64_t level) {
-  std::cout << "[" << level << "] Enter " << __func__ << "(int64_t)" << std::endl;
+  std::cout << "[" << level << "] Enter " << __func__ << "(int64_t)"
+            << std::endl;
   foo::freeFunction(level + 1);
   bar::freeFunction(level + 1);
-  std::cout << "[" << level << "] Exit " << __func__ << "(int64_t)" << std::endl;
+  std::cout << "[" << level << "] Exit " << __func__ << "(int64_t)"
+            << std::endl;
 }
 
 void FooBar::staticFunction(int level) {
@@ -177,37 +182,27 @@ void FooBar::staticFunction(int level) {
 }
 
 void FooBar::staticFunction(int64_t level) {
-  std::cout << "[" << level << "] Enter " << __func__ << "(int64_t)" << std::endl;
+  std::cout << "[" << level << "] Enter " << __func__ << "(int64_t)"
+            << std::endl;
   freeFunction(level + 1);
-  std::cout << "[" << level << "] Exit " << __func__ << "(int64_t)" << std::endl;
+  std::cout << "[" << level << "] Exit " << __func__ << "(int64_t)"
+            << std::endl;
 }
 
-int FooBar::getInt() const {
-  return _bar.getInt() + _foo.getInt();
-}
+int FooBar::getInt() const { return _bar.getInt() + _foo.getInt(); }
 
-void FooBar::setBarInt(int input) {
-  _bar.setInt(input);
-}
+void FooBar::setBarInt(int input) { _bar.setInt(input); }
 
-void FooBar::setFooInt(int input) {
-  _foo.setInt(input);
-}
+void FooBar::setFooInt(int input) { _foo.setInt(input); }
 
-int64_t FooBar::getInt64() const {
-  return _bar.getInt64() + _foo.getInt64();
-}
+int64_t FooBar::getInt64() const { return _bar.getInt64() + _foo.getInt64(); }
 
-void FooBar::setBarInt64(int64_t input) {
-  _bar.setInt64(input);
-}
+void FooBar::setBarInt64(int64_t input) { _bar.setInt64(input); }
 
-void FooBar::setFooInt64(int64_t input) {
-  _foo.setInt64(input);
-}
+void FooBar::setFooInt64(int64_t input) { _foo.setInt64(input); }
 
 std::string FooBar::operator()() const {
   return std::string{"\"FooBar\":{"} + _bar() + "," + _foo() + "}";
 }
 
-} // namespace foobar
+}  // namespace foobar
