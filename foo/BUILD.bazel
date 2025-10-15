@@ -13,7 +13,7 @@ cc_test(
   srcs = ["foo_test.cc"],
   #copts = ["-Iexternal/gtest/include"],
   deps = [
-    "@googletest//:gtest_main",
     ":foo",
+    "@googletest//:gtest_main",
   ],
 )
