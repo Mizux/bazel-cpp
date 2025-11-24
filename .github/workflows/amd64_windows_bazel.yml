@@ -13,7 +13,7 @@ jobs:
     name: windows•Bazel
     runs-on: windows-2022
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Install Bazel
         run: choco install bazel
       - name: Check Bazel
@@ -27,4 +27,4 @@ jobs:
     runs-on: ubuntu-latest
     needs: native
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
