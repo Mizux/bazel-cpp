@@ -22,7 +22,7 @@ jobs:
         run: bazel test --config=ci //...
 
   arm64_macos_bazel:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     needs: native
     steps:
       - uses: actions/checkout@v6
