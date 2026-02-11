@@ -1,19 +1,20 @@
-load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
+load("@rules_cc//cc:defs.bzl", "cc_binary")
 
 cc_binary(
-  name = "example",
-  srcs = ["example.cc"],
-  deps = [
-    "//foobar:foobar",
-  ],
+    name = "example",
+    srcs = ["example.cc"],
+    deps = [
+        "//foobar",
+    ],
 )
 
 cc_test(
-  name = "example_test",
-  size = "small",
-  srcs = ["example.cc"],
-  deps = [
-    ":example",
-    "//foobar:foobar",
-  ],
+    name = "example_test",
+    size = "small",
+    srcs = ["example.cc"],
+    deps = [
+        ":example",
+        "//foobar",
+    ],
 )
