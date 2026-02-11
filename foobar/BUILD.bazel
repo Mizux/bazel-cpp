@@ -1,23 +1,24 @@
+load("@rules_cc//cc:cc_test.bzl", "cc_test")
 load("@rules_cc//cc:defs.bzl", "cc_library")
 
 cc_library(
-  name = "foobar",
-  srcs = ["foobar.cc"],
-  hdrs = ["foobar.h"],
-  #strip_include_prefix = "include",
-  deps = [
-    "//bar:bar",
-    "//foo:foo",
-  ],
-  visibility = ["//visibility:public"],
+    name = "foobar",
+    srcs = ["foobar.cc"],
+    hdrs = ["foobar.h"],
+    visibility = ["//visibility:public"],
+    #strip_include_prefix = "include",
+    deps = [
+        "//bar",
+        "//foo",
+    ],
 )
 
 cc_test(
-  name = "foobar_test",
-  srcs = ["foobar_test.cc"],
-  #copts = ["-Iexternal/gtest/include"],
-  deps = [
-    "@googletest//:gtest_main",
-    ":foobar",
-  ],
+    name = "foobar_test",
+    srcs = ["foobar_test.cc"],
+    #copts = ["-Iexternal/gtest/include"],
+    deps = [
+        ":foobar",
+        "@googletest//:gtest_main",
+    ],
 )
