@@ -39,7 +39,7 @@ This project should run on GNU/Linux, MacOS and Windows.
 
 You'll need:
 
-* "Bazel >= 7.0".
+* "Bazel >= 8.0".
 
 ## Codemap
 
