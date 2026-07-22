@@ -45,7 +45,7 @@ You'll need:
 
 The project layout is as follow:
 
-* [WORKSPACE](WORKSPACE) Top-level for [Bazel](https://bazel.build) based build.
+* [MODULE.bazel](MODULE.bazel) Top-level for [Bazel](https://bazel.build) based build.
 
 ## Dependencies
 
